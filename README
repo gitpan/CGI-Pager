@@ -1,0 +1,31 @@
+CGI/Pager version 0.01
+======================
+
+CGI::Pager performs the "dirty work" necessary to program paginated
+data display in a web application. Based on given resultset size,
+page size, and offset value sensed from current URI, it constructs
+links for navigation between results pages. It can be used
+conveniently from a templating system, has both OO and functional
+interface, and can optionally generate necessary HTML itself.
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+
+  URI::QueryParam
+
+COPYRIGHT AND LICENCE
+
+Copyright 2006 by Egor Shipovalov, http://pragmaticware.com
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.

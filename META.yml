@@ -1,0 +1,17 @@
+abstract: generate HTML pagination linkage easily.
+author: 'Egor Shipovalov, L<http://pragmaticware.com/>'
+build_requires:
+  Test::More: 0.42
+distribution_type: module
+generated_by: Module::Install version 0.54
+license: perl
+name: CGI-Pager
+no_index:
+  directory:
+    - inc
+    - t
+requires:
+  URI: 0
+  URI::QueryParam: 0
+  perl: 5.6.0
+version: 0.01
