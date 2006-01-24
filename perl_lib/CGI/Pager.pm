@@ -8,7 +8,7 @@ use URI;
 use URI::QueryParam;
 
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 sub new {
@@ -109,6 +109,25 @@ sub last_offset {
 }
 
 
+sub first_pos_displayed {
+   ## Returns position of the first row currently displayed.
+   my $self = shift;
+
+   return $self->{offset} + 1;
+}
+
+
+sub last_pos_displayed {
+   ## Returns position of the last row currently displayed.
+   my $self = shift;
+
+   my $result = $self->{offset} + $self->{page_len};
+   $result = $self->{total_count} if $result > $self->{total_count};
+
+   return $result;
+}
+
+
 sub prev_url {
    ## Returns URL for the previous page as URI object.
    my $self = shift;
@@ -155,13 +174,14 @@ sub pages {
          push @{ $self->{pages} }, {
             url        => $self->url_for_offset($offset),
             number     => $page_num,
+            offset     => $offset,
             is_current => $offset == $self->{offset},
          };
 
          $offset += $self->{page_len};
          $page_num++;
 
-      } while ($offset + $self->{page_len} <= $self->{total_count});
+      } while ($offset <= $self->{total_count});
    }
 
    return wantarray ? @{ $self->{pages} } : $self->{pages};
@@ -227,6 +247,9 @@ Generates helper data and HTML for paginated representation of results.
      total_count => $search_results_count,
      page_len    => 50,
   );
+
+  print 'Found ', $search_results_count, ' results, displaying: ',
+         $pager->first_pos_displayed, ' - ', $pager->last_pos_displayed, ' ';
 
   # Display links to first and previous page, if necessary.
   unless ($pager->is_at_start) {
@@ -311,6 +334,11 @@ respectively.
 Return offset value the respective pages. If there's a bounds conflict,
 like when you call B<prev_offset> while on the first page, undef is
 returned.
+
+=item B<first_pos_displayed, last_pos_displayed>
+
+Return the position (starting from 1) of the first or last row
+respectively, displayed on current page.
 
 =item B<first_url, prev_url, next_url, last_url>
 

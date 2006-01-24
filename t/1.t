@@ -19,7 +19,7 @@ ok($pager->is_at_start);
 ok(!$pager->is_at_end);
 ok(!$pager->prev_offset);
 is($pager->next_offset, 10);
-is(@{ $pager->pages }, 3);
+is(@{ $pager->pages }, 4);
 
 $pager = get_test_pager(20, 10, 35);
 ok(!$pager->is_at_start);
