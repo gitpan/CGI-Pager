@@ -7,3 +7,6 @@ Revision history for Perl extension CGI::Pager.
 	- Fixed a bug in page numbering
         - Added 'last_pos_displayed' method.
 
+0.03  Mon Jan 24 2006
+	- Fixed another pagination bug.
+

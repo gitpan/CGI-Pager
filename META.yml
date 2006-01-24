@@ -14,4 +14,4 @@ requires:
   URI: 0
   URI::QueryParam: 0
   perl: 5.8.0
-version: 0.02
+version: 0.03

@@ -8,7 +8,7 @@ use URI;
 use URI::QueryParam;
 
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 sub new {
@@ -181,7 +181,7 @@ sub pages {
          $offset += $self->{page_len};
          $page_num++;
 
-      } while ($offset <= $self->{total_count});
+      } while ($offset < $self->{total_count});
    }
 
    return wantarray ? @{ $self->{pages} } : $self->{pages};
