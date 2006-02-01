@@ -10,3 +10,6 @@ Revision history for Perl extension CGI::Pager.
 0.03  Mon Jan 24 2006
 	- Fixed another pagination bug.
 
+0.04  Wed Feb 1 2006
+	- Fixed a fatal bug in installer.
+
