@@ -3,5 +3,5 @@ MANIFEST
 META.yml
 Makefile.PL
 README
-perl_lib/CGI/Pager.pm
+lib/CGI/Pager.pm
 t/1.t

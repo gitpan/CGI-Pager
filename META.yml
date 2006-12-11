@@ -1,17 +1,10 @@
-abstract: generate HTML pagination linkage easily.
-name: CGI-Pager
-author: 'Egor Shipovalov, http://pragmaticware.com/'
-build_requires:
-  Test::More: 0.42
-distribution_type: module
-license: perl
-installdirs: site
-version_from: perl_lib/CGI/Pager.pm
-no_index:
-  directory:
-    - inc
-    - t
+# http://module-build.sourceforge.net/META-spec.html
+#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
+name:         CGI-Pager
+version:      0.05
+version_from: lib/CGI/Pager.pm
+installdirs:  site
 requires:
-  URI: 0
-  URI::QueryParam: 0
-  perl: 5.8.0
+
+distribution_type: module
+generated_by: ExtUtils::MakeMaker version 6.17

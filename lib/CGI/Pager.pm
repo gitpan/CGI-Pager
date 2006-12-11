@@ -8,7 +8,7 @@ use URI;
 use URI::QueryParam;
 
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 
 sub new {
@@ -193,7 +193,11 @@ sub html {
    my $self = shift;
    my ($format) = @_;
 
-   if ($format eq 'combined') {
+   if ($format eq 'combined_div') {
+      return @{ $self->pages } > 1 ?
+                '<div class="navBar">' . $self->html('combined') . '</div>' : '';
+   }
+   elsif ($format eq 'combined') {
       return join $self->{links_delim},
                   grep defined,
                        map $self->html($_),
@@ -354,13 +358,15 @@ and C<is_current> - true if page is the currently displayed page.
 
 =item B<html($mode)>
 
-Returns HTML string with navigational links according to $mode,
-which can be: C<first>, C<last>, C<prev>, C<next>, C<pages> or
-C<combined>.  The first four will return just a link to respective
-page, 'pages' is string of links to individual pages, and C<combined>,
-which is the default, is concatenation of these. The concatenation can
-be controlled by C<links_order>, C<links_delim> and C<pages_delim>
-initialization parameters.
+Returns HTML string with navigational links according to $mode, which
+can be: C<first>, C<last>, C<prev>, C<next>, C<pages>, C<combined> or
+C<combined_div>.  The first four will produce a single link to
+respective page. 'pages' yields a string of links to individual
+pages. C<combined>, which is the default, is concatenation of
+these. C<combined_div> is like C<combined>, but wrapped in a DIV
+element with class attribute set to "navBar". The concatenation of
+links can be controlled by C<links_order>, C<links_delim> and
+C<pages_delim> initialization parameters.
 
 =item B<quick_html(%params)>
 
@@ -433,11 +439,11 @@ Delimiter used to space individual page links. Defaults to ' '.
 =head2 NOTES
 
 This module operates on the assumption that current offset is passed
-as a GET request variable to a results page (except that for the first
-page, where it's OK for it to be absent.)
+as a GET request variable (except that for the first page, where it's
+OK for it to be absent.)
 
 An instance of CGI::Pager is meant to last only for the duration of
-the request, and is not designed to be reused, like one might try in a
+the request and isn't designed to be reused, like one might try in a
 mod_perl environment.
 
 
