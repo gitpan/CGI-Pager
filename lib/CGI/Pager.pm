@@ -8,7 +8,7 @@ use URI;
 use URI::QueryParam;
 
 
-our $VERSION = '0.05';
+our $VERSION = '1.00';
 
 
 sub new {
@@ -56,6 +56,14 @@ sub url_for_offset {
    }
 
    return $work_uri;
+}
+
+
+sub total_count {
+   ## Return total count of results, as set on initialization.
+   my $self = shift;
+
+   return $self->{total_count};
 }
 
 
@@ -348,6 +356,10 @@ respectively, displayed on current page.
 
 Return URLs of the respective pages as URI objects. Bounds conflicts
 are handled like in the above family of methods.
+
+=item B<total_count>
+
+Return total count of results, as set on initialization.
 
 =item B<pages>
 
