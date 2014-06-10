@@ -16,3 +16,6 @@ Revision history for Perl extension CGI::Pager.
 1.00  Fri Oct 12 2007
         - Added total_count method.
 
+1.01  Tue Jun 10 2014
+        - Fixed dependency info in the package. Converted to Dist::Zilla.
+
